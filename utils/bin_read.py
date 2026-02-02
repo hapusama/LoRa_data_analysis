@@ -371,9 +371,9 @@ def plot_combined_spectra(bin_files, save_fig_path, symbol_samples, preamble_sym
 
 if __name__ == "__main__":
     # LoRa参数 (请根据你的设置填写)
-    CF = 915000000  # 中心频率 (Hz), 例如433MHz
+    CF = 487700000  # 中心频率 (Hz), 例如433MHz
     BW = 125000  # 带宽 (Hz), 例如125kHz
-    SF = 12       # 扩频因子, 例如7
+    SF = 9       # 扩频因子, 例如7
     fs = 250000 # 采样率 (Hz), 例如1MHz
     preamble_symbols = 5  # 前导码符号数
     payload_bytes = 64    # 有效载荷字节数
@@ -388,7 +388,7 @@ if __name__ == "__main__":
     print(f"Symbol samples: {symbol_samples}, Packet samples: {packet_samples}")
 
     # 文件夹路径
-    folder_path = r'd:\Desktop\data_analysis\rawData\1-40'
+    folder_path = r'd:\Desktop\data_analysis\rawData\dong'
 
     # 创建save_fig文件夹
     save_fig_dir = 'save_fig'
@@ -398,15 +398,15 @@ if __name__ == "__main__":
     bin_files = glob.glob(os.path.join(folder_path, '*.bin'))
 
     # 对每个bin文件调用处理函数
-    # for bin_file in bin_files:
-    #     process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, preamble_symbols, BW, fs)
-    #     # plot_bin_file(bin_file, os.path.join(save_fig_dir, os.path.splitext(os.path.basename(bin_file))[0] + '.png'), start_sample=0, num_samples=5000)
+    for bin_file in bin_files:
+        process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, preamble_symbols, BW, fs)
+        plot_bin_file(bin_file, os.path.join(save_fig_dir, os.path.splitext(os.path.basename(bin_file))[0] + '.png'), start_sample=0, num_samples=5000)
 
     # 组合绘制指定文件的 FFT + PSD
-    target_names = ['5m.bin', '10m.bin', '15m.bin']
-    target_files = [os.path.join(folder_path, name) for name in target_names if os.path.exists(os.path.join(folder_path, name))]
-    if target_files:
-        combined_path = os.path.join(save_fig_dir, 'combined_fft_psd_dechirped.png')
-        plot_combined_spectra(target_files, combined_path, symbol_samples, preamble_symbols, BW, fs)
-    else:
-        print("No target files found for combined plot")
+    # target_names = ['5m.bin', '10m.bin', '15m.bin']
+    # target_files = [os.path.join(folder_path, name) for name in target_names if os.path.exists(os.path.join(folder_path, name))]
+    # if target_files:
+    #     combined_path = os.path.join(save_fig_dir, 'combined_fft_psd_dechirped.png')
+    #     plot_combined_spectra(target_files, combined_path, symbol_samples, preamble_symbols, BW, fs)
+    # else:
+    #     print("No target files found for combined plot")
