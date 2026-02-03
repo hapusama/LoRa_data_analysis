@@ -400,7 +400,7 @@ if __name__ == "__main__":
     # 对每个bin文件调用处理函数
     for bin_file in bin_files:
         process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, preamble_symbols, BW, fs)
-        plot_bin_file(bin_file, os.path.join(save_fig_dir, os.path.splitext(os.path.basename(bin_file))[0] + '.png'), start_sample=0, num_samples=5000)
+        # plot_bin_file(bin_file, os.path.join(save_fig_dir, os.path.splitext(os.path.basename(bin_file))[0] + '.png'), start_sample=0, num_samples=5000)
 
     # 组合绘制指定文件的 FFT + PSD
     # target_names = ['5m.bin', '10m.bin', '15m.bin']
