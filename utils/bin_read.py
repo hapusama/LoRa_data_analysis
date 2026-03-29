@@ -130,7 +130,7 @@ def process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, pre
 
     symbol = data[sym_start:sym_end]
     # dechirp
-    # symbol = dechirp_symbol(symbol, BW, fs, sf=sf)
+    symbol = dechirp_symbol(symbol, BW, fs, sf=sf)
     
     chirp_count = len(symbol) / symbol_samples
     print(f"Using preamble upchirp symbol at packet offset {sym_start} (length {len(symbol)} samples, {chirp_count:.1f} chirps)")
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     CF = 487700000  # 中心频率 (Hz), 例如433MHz
     BW = 125000  # 带宽 (Hz), 例如125kHz
     SF = 11      # 扩频因子, 例如7
-    fs = 1000000 # 采样率 (Hz), 例如1MHz
+    fs = 500000 # 采样率 (Hz), 例如1MHz
     preamble_symbols = 16  # 前导码符号数
     detect_threshold = 0.3  # 前导码粗检测阈值
     payload_bytes = 64    # 有效载荷字节数
@@ -228,4 +228,4 @@ if __name__ == "__main__":
 
     # 对每个bin文件调用处理函数
     for bin_file in bin_files:
-        process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, preamble_symbols, BW, fs, threshold=detect_threshold)
+        process_bin_file(bin_file, save_fig_dir, symbol_samples, packet_samples, preamble_symbols, BW, fs, threshold=detect_threshold,sf=SF)
