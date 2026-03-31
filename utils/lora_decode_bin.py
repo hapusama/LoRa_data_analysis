@@ -8,9 +8,9 @@ from lora_decoder import LoRaConfig, LoRaReceiver
 def main() -> None:
     parser = argparse.ArgumentParser(description="Python LoRa decoder pipeline (gr-lora style)")
     parser.add_argument("--input", default=r"d:\\Desktop\\data_analysis\\rawData\\dong", help=".bin file or folder")
-    parser.add_argument("--sf", type=int, default=11)
+    parser.add_argument("--sf", type=int, default=10)
     parser.add_argument("--bw", type=float, default=125000)
-    parser.add_argument("--fs", type=float, default=500000)
+    parser.add_argument("--fs", type=float, default=1000000)
     parser.add_argument("--preamble", type=int, default=16)
     parser.add_argument("--cr", type=int, default=1, help="1..4 for 4/5..4/8")
     parser.add_argument("--implicit", action="store_true")
